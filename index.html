@@ -24,15 +24,21 @@
 
 			  $('#query').html($.jssearch.queryWords.join(' '));
 
-			  $('#results').html('');
-			  var i = 0;
-			  result.forEach(function(item) {
-				  if (i++ > 20) {
-					  return;
-				  }
-				  var div = $('#results');
-				  div.html(div.html() + '<li>"' + item.file.title + '" ' + item.file.url + ' w:' + item.weight + '</li>');
-			  });
+			  if (result.length == 0) {
+				  $('#results').html('<li>No results</li>');
+			  } else {
+				  var i = 0;
+				  var resHtml = '';
+				  result.forEach(function(item) {
+					  if (i++ > 20) {
+						  return;
+					  }
+					  resHtml = resHtml +
+							  '<li><a href="http://yiiframework.com/yii2-docs/' + item.file.url.substr(3) +'">' + item.file.title + '</a><br />' +
+							  'Weight: ' + item.weight + '</li>';
+				  });
+				  $('#results').html(resHtml);
+			  }
 		  });
 	  });
 	</script>
@@ -68,6 +74,15 @@ similar yet much more simplified and dump approach than the popular search engin
 <a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Demo</h2>
 
 <p>
+	This demo shows a search on an index built for the <a href="http://www.yiiframework.com/doc-2.0/index.html">Yii framework 2.0 API docs and the definitive guide</a>.
+	This index in this demo was built independent from the yii docs so some links may be outdated.
+</p>
+<p>
+	The search is performed as you type, so enter something in the search field and enjoy.
+	"Something" could be "Active Record", "REST API", "html" or anything else you may find interesting.
+</p>
+
+<p>
 	<label for="searchbox" style="display: inline-block; width: 160px;">Search: </label>
 	<input id="searchbox" type="text" value="">
 
@@ -76,6 +91,7 @@ similar yet much more simplified and dump approach than the popular search engin
 	<label for="query" style="display: inline-block; width: 160px;">Actual query: </label>
 	<span id="query"></span>
 </p>
+<h3>Results:</h3>
 <ul id="results">
 	<li>No results</li>
 </ul>

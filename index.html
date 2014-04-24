@@ -37,24 +37,24 @@
 <a href="https://pages.github.com/">github pages</a> or offline API documentation. The index is built by a PHP script using a
 similar yet much more simplified and dump approach than the popular search enging <a href="http://lucene.apache.org/">Lucene</a>.</p>
 
-<h2>
-<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
-
-<p>PHP 5.4 or higher is required to run the index generator.</p>
-
-<p>Installation is recommended to be done via [composer][] by adding the following to the <code>require</code> section in your <code>composer.json</code>:</p>
-
-<div class="highlight highlight-json"><pre><span class="s2">"cebe/js-search"</span><span class="err">:</span> <span class="s2">"*"</span>
-</pre></div>
-
-<p>Run <code>composer update</code> afterwards.</p>
+<p>See the <a href="https://github.com/cebe/js-search#readme">README</a> for installation and usage instructions.</p>
 
 <h2>
-<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Demo</h2>
 
-<p>TODO.</p>
+<p>
+	<label for="searchbox" style="display: inline-block; width: 160px;">Search: </label>
+	<input id="searchbox" type="text" value="">
 
-<p>See <a href="example.html">example.html</a> for an implementation.</p>
+	<br/>
+
+	<label for="query" style="display: inline-block; width: 160px;">Actual query: </label>
+	<span id="query"></span>
+</p>
+<ul id="results">
+	<li>No results</li>
+</ul>
+
       </section>
       <footer>
         <p>This project is maintained by <a href="https://github.com/cebe">cebe</a></p>

@@ -15,5 +15,8 @@
 		"psr-4": {
 			"cebe\\jssearch\\": "lib/"
 		}
-	}
+	},
+	"bin": [
+		"bin/jsindex"
+	]
 }

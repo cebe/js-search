@@ -1,5 +1,45 @@
+// polyfills for IE<9
+(function(fn) {
+	if (!fn.map) {
+		fn.map = function(f/*, thisArg */) {
+			if (this === void 0 || this === null)
+				throw new TypeError();
 
-$.jssearch = {
+			var t = Object(this);
+			var len = t.length >>> 0;
+			if (typeof f !== "function")
+				throw new TypeError();
+
+			var res = new Array(len);
+			var thisArg = arguments.length >= 2 ? arguments[1] : void 0;
+			for (var i = 0; i < len; i++) {
+				if (i in t)
+					res[i] = f.call(thisArg, t[i], i, t);
+			}
+
+			return res;
+		}
+	}
+	if (!fn.forEach) {
+		fn.forEach = function (f/*, thisArg */) {
+			if (this === void 0 || this === null)
+				throw new TypeError();
+
+			var t = Object(this);
+			var len = t.length >>> 0;
+			if (typeof f !== "function")
+				throw new TypeError();
+
+			var thisArg = arguments.length >= 2 ? arguments[1] : void 0;
+			for (var i = 0; i < len; i++) {
+				if (i in t)
+					f.call(thisArg, t[i], i, t);
+			}
+		}
+	}
+})(Array.prototype);
+
+var jssearch = {
 
 	/**
 	 * the actual words finally used to query (set by last search call)
@@ -13,7 +53,7 @@ $.jssearch = {
 		$.jssearch.queryWords = words.map(function(i) { return i.t; });
 
 		// do not search when no words given
-		if (words.length == 0) {
+		if (!words.length) {
 			return result;
 		}
 
@@ -58,7 +98,7 @@ $.jssearch = {
 			if (!$.jssearch.index[word.t] && word.t.length > 2) {
 				// complete words that are not in the index
 				for(var w in $.jssearch.index) {
-					if (w.substr(0, word.t.length) == word.t) {
+					if (w.substr(0, word.t.length) === word.t) {
 						result.push({t: w, w: 1});
 					}
 				}

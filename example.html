@@ -11,9 +11,9 @@
 
 		$( document ).ready(function() {
 			$('#searchbox').on("keyup", function() {
-				var result = $.jssearch.search($(this).val());
+				var result = jssearch.search($(this).val());
 
-				$('#query').html($.jssearch.queryWords.join(' '));
+				$('#query').html(jssearch.queryWords.join(' '));
 
 				$('#results').html('');
 				var i = 0;

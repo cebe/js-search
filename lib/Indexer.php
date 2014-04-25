@@ -77,9 +77,9 @@ class Indexer
 		$tokenizeString = $this->getTokenizer()->tokenizeJs();
 
 		return <<<JS
-$.jssearch.index = $index;
-$.jssearch.files = $files;
-$.jssearch.tokenizeString = $tokenizeString;
+jssearch.index = $index;
+jssearch.files = $files;
+jssearch.tokenizeString = $tokenizeString;
 JS;
 	}
 

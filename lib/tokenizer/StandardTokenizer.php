@@ -51,7 +51,7 @@ class StandardTokenizer implements TokenizerInterface
 	{
 		$delimiters = preg_quote($this->delimiters, '/');
 		return array_map(function($token) {return ['t' => $token, 'w' => 1]; }, array_filter(
-			array_map('strtolower', preg_split("/[\\s$delimiters]+/", $string, -1, PREG_SPLIT_NO_EMPTY)),
+			array_map('mb_strtolower', preg_split("/[\\s$delimiters]+/", $string, -1, PREG_SPLIT_NO_EMPTY)),
 			function($word) {
 				return !in_array($word, $this->stopWords);
 			}

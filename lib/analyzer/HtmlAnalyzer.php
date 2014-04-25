@@ -29,7 +29,7 @@ class HtmlAnalyzer implements AnalyzerInterface
 		$index = array_merge(
 			$this->findText($string, '~<h(\d)>(.*?)</h\1>~s',   ['text' => 2, 'weight' => 1], $tokenizer, function($w, $h) { return $w * ($this->headWeight - $h) / 10; }),
 			$this->findText($string, '~<title>(.*?)</title>~s', ['text' => 1], $tokenizer, $this->titleWeight),
-			$this->findText($string, '~<p>(.*|(?R))</p>~s',     ['text' => 1], $tokenizer, $this->textWeight)
+			$this->findText($string, '~<(p|th|td|li|dd|dt)>(.*|(?R))</\1>~s',     ['text' => 2], $tokenizer, $this->textWeight)
 		);
 
 		$wordCount = array_reduce($index, function($carry, $item) { return $carry + count($item); }, 0);

@@ -7,8 +7,11 @@ It uses a pre-compiled search index to add a fulltext search to static HTML page
 [github pages][] or offline API documentation. The index is built by a PHP script using a
 similar yet much more simplified and dump approach than the popular search enging [Lucene].
 
+To see how it looks like, check out the [demo][].
+
 [github pages]: https://pages.github.com/
 [Lucene]: http://lucene.apache.org/
+[demo]: http://cebe.github.io/js-search/#demo
 
 
 Installation

@@ -56,10 +56,10 @@ foreach($src as $dir) {
 	$files = findFiles($dir);
 
 	if (empty($files)) {
-		echo("No files where found in $dir.");
+		echo("No files where found in $dir.\n");
+	} else {
+		$indexer->indexFiles($files, $dir);
 	}
-
-	$indexer->indexFiles($files, $dir);
 }
 
 $js = $indexer->exportJs();

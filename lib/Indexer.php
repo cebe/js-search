@@ -65,7 +65,7 @@ class Indexer
 			$title = '<i>No title</i>';
 		}
 		return [
-			'url' => $baseUrl . str_replace('\\', '/', substr($file, strlen(rtrim($basePath, '\\/')))),
+			'url' => $baseUrl . str_replace('\\', '/', substr($file, strlen(rtrim($basePath, '\\/'))+1)),
 			'title' => $title,
 		];
 	}

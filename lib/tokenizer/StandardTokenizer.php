@@ -76,7 +76,10 @@ function(string) {
 		return string.split(/[\s$delimiters]+/).map(function(val) {
 			return val.toLowerCase();
 		}).filter(function(val) {
-			return !(val in stopWords);
+			for (w in stopWords) {
+				if (stopWords[w] == val) return false;
+			}
+			return true;
 		}).map(function(word) {
 			return {t: word, w: 1};
 		});

@@ -20,10 +20,14 @@ if (!class_exists('cebe\jssearch\Indexer')) {
 	error('Autoloading does not seem to work. Looks like you should run `composer install` first.');
 }
 
+$output = new \stdClass;
+$output->filepath = 'jssearch.index.js';
+$output->argvIndex = NULL;
+
 // check arguments
 $src = [];
 foreach($argv as $k => $arg) {
-	if ($k == 0) {
+	if ($k == 0 || $k === $output->argvIndex) {
 		continue;
 	}
 	if ($arg[0] == '-') {
@@ -34,8 +38,14 @@ foreach($argv as $k => $arg) {
 			case '--help':
 				echo "jssearch index builder\n";
 				echo "----------------------\n\n";
-				echo "by Carsten Brandt <mail@cebe.cc>\n\n";
+				echo "by Carsten Brandt <mail@cebe.cc>\n";
+				echo "by Mateus Tavares <contato@mateustavares.com.br>\n\n";
 				usage();
+				break;
+			case '-o':
+			case '--output':
+				$output->argvIndex = $k + 1;
+				$output->filepath = $argv[$output->argvIndex];
 				break;
 			default:
 				error("Unknown argument " . $arg[0], "usage");
@@ -63,7 +73,7 @@ foreach($src as $dir) {
 }
 
 $js = $indexer->exportJs();
-file_put_contents('jssearch.index.js', $js);
+file_put_contents($output->filepath, $js);
 
 
 // functions
@@ -78,9 +88,10 @@ function usage() {
 Usage:
     $cmd [src-directory]
 
-    --help    shows this usage information.
+    --help       shows this usage information.
+    --output     sets the output file (Default: jssearch.index.js).
 
-    creates and jssearch.index.js file in the current directory.
+    creates an file in the specified directory.
 
 EOF;
 	exit(1);
